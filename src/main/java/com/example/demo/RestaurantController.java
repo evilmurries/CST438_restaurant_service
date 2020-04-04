@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.List;
+import com.google.gson.Gson;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,9 @@ public class RestaurantController
    public ResponseEntity<Restaurant> findRestaurantById(@PathVariable("id") int id) {
       Restaurant restaurant = restaurantService.getRestaurant(id);
       if (restaurant == null) {
-         return new ResponseEntity<Restaurant>( HttpStatus.NOT_FOUND);
+         return new ResponseEntity<Restaurant>(HttpStatus.NOT_FOUND);
       }
+      System.out.println(restaurant);
       return new ResponseEntity<Restaurant>(restaurant, HttpStatus.OK);
    }
    
