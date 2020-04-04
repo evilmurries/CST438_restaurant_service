@@ -1,4 +1,4 @@
-package domain;
+package com.example.demo;
 
 import javax.persistence.*;
 
@@ -23,6 +23,10 @@ public class Restaurant {
    @Transient
    private String message;
    
+   public Restaurant() {
+      
+   }
+  
    public Restaurant(String name, String cuisineType, String price) {
       this.restaurantName = name;
       this.cuisine = cuisineType;

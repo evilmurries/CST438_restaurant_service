@@ -1,4 +1,4 @@
-package controller;
+package com.example.demo;
 
 import java.util.List;
 
@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import domain.Restaurant;
-import service.RestaurantService;
 
 @RestController
 public class RestaurantController
@@ -30,5 +27,10 @@ public class RestaurantController
          return new ResponseEntity<Restaurant>( HttpStatus.NOT_FOUND);
       }
       return new ResponseEntity<Restaurant>(restaurant, HttpStatus.OK);
+   }
+   
+   @GetMapping("/restaurant")
+   public String test() {
+      return "welcome";
    }
 }
