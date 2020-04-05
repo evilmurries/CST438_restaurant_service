@@ -28,7 +28,40 @@ public class RestaurantService
             log.info("Restaurant Found: " + r.toString());
            return r;
       } else {
-         log.info("No restaurant found with that id");
+         log.info("No Restaurant Found with that id");
+         return null;
+      }
+   }
+   
+   public Restaurant getRestaurantName(String name) {
+      Restaurant r = restaurantRepository.findByRestaurantName(name);
+      if (r != null ) {
+            log.info("Restaurant Found: " + r.toString());
+           return r;
+      } else {
+         log.info("No Restaurant Found with that name");
+         return null;
+      }
+   }
+   
+   public Restaurant getARestaurant() {
+      Restaurant r = restaurantRepository.findARestaurant();
+      if (r != null ) {
+            log.info("Restaurant Found: " + r.toString());
+           return r;
+      } else {
+         log.info("No Restaurant Found");
+         return null;
+      }
+   }
+   
+   public List<Restaurant> getRestaurants() {
+      List<Restaurant> r = restaurantRepository.findAllRestaurants();
+      if (r != null ) {
+            log.info("Restaurants Found");
+           return r;
+      } else {
+         log.info("No Restaurants Found");
          return null;
       }
    }

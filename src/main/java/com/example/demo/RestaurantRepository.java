@@ -8,8 +8,10 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
    Restaurant findById(int id);
    
-   List<Restaurant> findByRestaurantName(String restaurantName);
+   Restaurant findByRestaurantName(String restaurantName);
    
+   @Query(value="select * from restaurant limit 1", nativeQuery=true)
+   public Restaurant findARestaurant();
 
    @Query(value="select * from restaurant order by id desc", nativeQuery=true)
    public List<Restaurant> findAllRestaurants();

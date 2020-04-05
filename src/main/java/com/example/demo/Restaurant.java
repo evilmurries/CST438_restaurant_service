@@ -14,15 +14,6 @@ public class Restaurant {
    private String price;
    
    
-//   // transient attributes are not stored in database. 
-//   @Transient
-//   private double toCityTemp;
-//   @Transient
-//   private String toCityWeatherCondition;
-   
-   @Transient
-   private String message;
-   
    public Restaurant() {
       
    }
