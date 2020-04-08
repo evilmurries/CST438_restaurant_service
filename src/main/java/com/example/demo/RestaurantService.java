@@ -66,4 +66,9 @@ public class RestaurantService
       }
    }
    
+   public Restaurant addNewRestaurant(String name, String price, String cuisine) {
+      Restaurant newRestaurant = new Restaurant(name, price, cuisine);
+      Restaurant confirmation = restaurantRepository.save(newRestaurant);
+      return confirmation;
+   }  
 }

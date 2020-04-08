@@ -59,5 +59,19 @@ public class RestaurantController
       System.out.println(restaurant);
       return new ResponseEntity<List<Restaurant>>(restaurant, HttpStatus.OK);
    }
+   
+   @PostMapping("/restaurant/add/{name}/{price}/{cuisine}")
+   public ResponseEntity<Restaurant> addRestaurant(@PathVariable("name") String name,
+         @PathVariable("price") String price,
+         @PathVariable("cuisine") String cuisine
+         ) {
+      Restaurant restaurant = restaurantService.addNewRestaurant(name, price, cuisine);
+      if (restaurant == null) {
+         return new ResponseEntity<Restaurant>(HttpStatus.NOT_FOUND);
+      }
+      System.out.println(restaurant);
+      return new ResponseEntity<Restaurant>(restaurant, HttpStatus.OK);
+   }
+   
 
 }
