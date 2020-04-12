@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,6 +22,7 @@ public class RestaurantController
    
    
    @GetMapping("/restaurant/name/{name}")
+   @ResponseBody
    public ResponseEntity<Restaurant> findRestaurantById(@PathVariable("name") String name) {
       Restaurant restaurant = restaurantService.getRestaurantName(name);
       if (restaurant == null) {
@@ -60,18 +62,4 @@ public class RestaurantController
       return new ResponseEntity<List<Restaurant>>(restaurant, HttpStatus.OK);
    }
    
-   @PostMapping("/restaurant/add/{name}/{price}/{cuisine}")
-   public ResponseEntity<Restaurant> addRestaurant(@PathVariable("name") String name,
-         @PathVariable("price") String price,
-         @PathVariable("cuisine") String cuisine
-         ) {
-      Restaurant restaurant = restaurantService.addNewRestaurant(name, price, cuisine);
-      if (restaurant == null) {
-         return new ResponseEntity<Restaurant>(HttpStatus.NOT_FOUND);
-      }
-      System.out.println(restaurant);
-      return new ResponseEntity<Restaurant>(restaurant, HttpStatus.OK);
-   }
-   
-
 }
