@@ -4,14 +4,17 @@ import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.Restaurant;
@@ -27,10 +30,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@WebMvcTest(RestaurantController.class)
 public class RestaurantControllerTest
 {
    @MockBean
+   @Autowired
    private RestaurantService restaurantService;
    
    @Autowired
@@ -55,11 +60,11 @@ public class RestaurantControllerTest
       Restaurant expected = new Restaurant(1, "Giovannis", "Italian", "$$$");
       Restaurant expected2 = new Restaurant(1, "giovannis", "Italian", "$$$");
       
-      given(restaurantService.getRestaurantName(attempt.getRestaurantName())).willReturn(expected);
+      given(restaurantService.getRestaurantName("Giovannis")).willReturn(expected);
       
       // when
       MockHttpServletResponse response = mvc.perform(
-            get("api/restaurant/name/{name}").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant/name/Giovannis").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt).getJson()))
             .andReturn().getResponse();
       
@@ -70,7 +75,7 @@ public class RestaurantControllerTest
       
       // When name is bad
       MockHttpServletResponse response2 = mvc.perform(
-            get("api/restaurant/name/{name}").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant/name/giovannis").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt).getJson()))
             .andReturn().getResponse();
       
@@ -91,7 +96,7 @@ public class RestaurantControllerTest
       
       // when
       MockHttpServletResponse response = mvc.perform(
-            get("api/restaurant/id/{id}").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant/id/1").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt).getJson()))
             .andReturn().getResponse();
       
@@ -102,7 +107,7 @@ public class RestaurantControllerTest
       
       // When id is bad
       MockHttpServletResponse response2 = mvc.perform(
-            get("api/restaurant/id/{id}").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant/id/1").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt).getJson()))
             .andReturn().getResponse();
       
@@ -122,7 +127,7 @@ public class RestaurantControllerTest
       
       // when
       MockHttpServletResponse response = mvc.perform(
-            get("api/restaurant").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt).getJson()))
             .andReturn().getResponse();
       
@@ -147,7 +152,7 @@ public class RestaurantControllerTest
       
       // when
       MockHttpServletResponse response1 = mvc.perform(
-            get("api/restaurant").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt.get(0)).getJson()))
             .andReturn().getResponse();
       
@@ -157,7 +162,7 @@ public class RestaurantControllerTest
             json.write(expected.get(0)).getJson());
       
       MockHttpServletResponse response2 = mvc.perform(
-            get("api/restaurant").contentType(MediaType.APPLICATION_JSON)
+            get("/restaurant").contentType(MediaType.APPLICATION_JSON)
                .content(json.write(attempt.get(1)).getJson()))
             .andReturn().getResponse();
       
