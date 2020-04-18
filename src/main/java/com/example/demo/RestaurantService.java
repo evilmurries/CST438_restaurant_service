@@ -22,7 +22,7 @@ public class RestaurantService
       this.restaurantRepository = restaurantRepository;
    }
    
-   public Restaurant getRestaurant(int id) {
+   public Restaurant getRestaurant(long id) {
       Restaurant r = restaurantRepository.findById(id);
       if (r != null ) {
             log.info("Restaurant Found: " + r.toString());

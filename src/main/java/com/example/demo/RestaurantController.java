@@ -23,7 +23,7 @@ public class RestaurantController
    
    
    @RequestMapping("/restaurant/name/{name}")
-   public ResponseEntity<Restaurant> findRestaurantById(@PathVariable("name") String name) {
+   public ResponseEntity<Restaurant> findRestaurantByName(@PathVariable("name") String name) {
       Restaurant restaurant = restaurantService.getRestaurantName(name);
       if (restaurant == null) {
          return new ResponseEntity<Restaurant>(HttpStatus.NOT_FOUND);

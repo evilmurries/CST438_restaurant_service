@@ -7,7 +7,7 @@ public class Restaurant {
    
    @Id
    @GeneratedValue
-   private int id;
+   private long id;
    
    private String restaurantName;
    private String cuisine;
@@ -21,7 +21,8 @@ public class Restaurant {
       
    }
   
-   public Restaurant(String name, String cuisineType, String price) {
+   public Restaurant(long id, String name, String cuisineType, String price) {
+      this.id = id;
       this.restaurantName = name;
       this.cuisine = cuisineType;
       this.price = price;
@@ -30,6 +31,14 @@ public class Restaurant {
    @Override
    public String toString( ) {
       return this.restaurantName + " " + this.cuisine + " " + this.price;
+   }
+   
+   public void setId(long id) {
+      this.id = id;
+   }
+   
+   public long getId() {
+      return this.id;
    }
    
    public void setRestaurantName(String name) {
