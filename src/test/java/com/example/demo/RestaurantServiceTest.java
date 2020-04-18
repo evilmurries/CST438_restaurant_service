@@ -1,9 +1,11 @@
-package restaurant.service;
+package com.example.demo;
 
 import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,6 +28,14 @@ public class RestaurantServiceTest
    
    @MockBean
    private RestaurantRepository testRepository;
+   
+   @BeforeEach
+   public void setupEach(){
+      MockitoAnnotations.initMocks(this);
+      restaurantService = new RestaurantService(testRepository);  
+   }
+   
+   
 
    @Test
    public void testRestaurantFound() throws Exception {

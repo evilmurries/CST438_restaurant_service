@@ -1,7 +1,8 @@
-package restaurant.controller;
+package com.example.demo;
 
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class RestaurantControllerTest
    private JacksonTester<Restaurant> json;
    
 
-   @BeforeAll
+   @BeforeEach
    public void setup() {
       JacksonTester.initFields(this, new ObjectMapper());
    }
