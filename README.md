@@ -4,6 +4,12 @@ Libera is a food ordering service web application composed of dedicated
 microservices. Restaurant service is a REST api that houses restaurant
 metadata and makes it accessible via json responses.
 
+Libera was developed by:
+
+* Mark Mariscal
+* Wais Robleh
+* Christopher Piwarski
+
 ## Usage
 
 * The restaurant microservice should be the first service ran when testing
